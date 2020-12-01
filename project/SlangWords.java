@@ -1,9 +1,10 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.Map;
 import java.util.Scanner;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
@@ -17,12 +18,13 @@ public class SlangWords {
     }
 
     // clear screen
-    public static void clearScreen() {  
+    public final static void clearScreen() {  
         System.out.print("\033[H\033[2J");  
-        System.out.flush();  
+        System.out.flush(); 
     } 
 
     public static HashMap<String, List<String>> m = new HashMap<String, List<String>>();
+    public static ArrayList<String> his = new ArrayList<String>();
     public static Scanner sc = new Scanner(System.in);
 
     public static void ReadFile(String file_name) {
@@ -57,19 +59,53 @@ public class SlangWords {
         catch (Exception ex) {
             System.out.println("Error: "+ex);
         }
+    }
 
-        // for (String i : m.keySet()) {
-        //     List<String> l = m.get(i);
-        //     System.out.print(i + ": ");
-        //     for (String s : l) {
-        //         System.out.print(s + ", ");
-        //     }
-        //     System.out.println();
-        // }
+    public static void WriteHistory(String file_name) {
+        try {
+            File f = new File(file_name);
+            FileWriter fw = new FileWriter(f);
+
+            BufferedWriter bw = new BufferedWriter(fw);
+            
+            //bw.newLine();
+            for (String i : his) {
+                fw.write(i + "\n");
+            }
+
+            fw.close();
+            bw.close();
+        }
+        catch (Exception ex) {
+            System.out.println("Error: "+ex);
+        }
+    }
+
+    public static ArrayList<String> LoadHistory (String file_name) {
+        ArrayList<String> his = new ArrayList<String>();
+        try {
+            File f = new File(file_name);
+            FileReader fr = new FileReader(f);
+
+            BufferedReader br = new BufferedReader(fr);
+            String line;
+            while ((line = br.readLine()) != null) {
+                his.add(line);
+            }
+
+            fr.close();
+            br.close();
+        }
+        catch (Exception ex) {
+            System.out.println("Error: "+ex);
+        }
+
+        return his;
     }
 
     public static void Menu() {
         clearScreen();
+        
         System.out.println("MENU");
         System.out.println("1. Search by Slang word");
         System.out.println("2. Search by Definition");
@@ -87,12 +123,16 @@ public class SlangWords {
         if (choice == 1) {
             Func_1();
         }
-        if (choice == 11) {
-            clearScreen();
-            System.exit(0);
-        }
-        if (choice == 2) {
+        else if (choice == 2) {
             Func_2();
+        }
+        else if (choice == 3) {
+            Func_3();
+        }
+        else {
+            clearScreen();
+            WriteHistory("history.txt");
+            System.exit(0);
         }
     }
 
@@ -100,6 +140,7 @@ public class SlangWords {
         clearScreen();
         System.out.print("Enter a Slang word: ");
         String key = sc.next();
+        his.add(key);
         if (!m.containsKey(key)) {
             System.out.println("Not Found!!!");
         }
@@ -120,6 +161,7 @@ public class SlangWords {
         ArrayList<String> slang_means = new ArrayList<String>();
         System.out.print("Enter any word to find a Slang word: ");
         String word = sc.next();
+        his.add(word);
         word = word.toLowerCase();
         for (String i : m.keySet()) {
             for (String s: m.get(i)) {
@@ -148,8 +190,16 @@ public class SlangWords {
         Menu();
     }
 
-    public void Func_3() {
+    public static void Func_3() {
+        clearScreen();
 
+        System.out.println("History:");
+        for (String i : his) {
+            System.out.println("- " + i);
+        }
+
+        PauseTest();
+        Menu();
     }
 
     public void Func_4() {
@@ -182,8 +232,7 @@ public class SlangWords {
 
     public static void main(String[] args) {
         ReadFile("slang.txt");
+        his = LoadHistory("history.txt");
         Menu();
     }
 }
-
-
