@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Map;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.HashMap;
 import java.util.List;
@@ -136,25 +137,34 @@ public class SlangWords {
     }
 
     public static void WriteFile(String file_name) {
-        try(FileWriter fw = new FileWriter(file_name);
-            BufferedWriter bw = new BufferedWriter(fw)) {
-          
+        try {
+            File f = new File(file_name);
+            FileWriter fw = new FileWriter(f);
+            //BufferedWriter bw = new BufferedWriter(fw);
             for (String key : m.keySet()) {
-                bw.write(key + "`");
+                fw.write(key + "`");
                 List<String> tmp = m.get(key);
                 int i = 0;
                 for (i = 0; i < tmp.size() - 1; i++) {
-                    bw.write(tmp.get(i) + "| ");
+                    fw.write(tmp.get(i) + "| ");
                 }
-                bw.write(tmp.get(i) + "\n");
+                fw.write(tmp.get(i) + "\n");
             }
 
             fw.close();
-            bw.close();
+            //bw.close();
         }
         catch (Exception ex) {
-            System.out.println("Error: "+ex);
+            System.out.println("Error: huhu "+ex);
         }
+    }
+
+    public static void ShowDefinition(String slang) {
+        List<String> l = m.get(slang);
+        for (String s: l) {
+            System.out.print(s + ", ");
+        }
+        System.out.print("\b\b     \n");
     }
 
     public static void Menu() {
@@ -195,6 +205,9 @@ public class SlangWords {
         }
         else if (choice == 7) {
             Func_7();
+        }
+        else if (choice == 8) {
+            Func_8();
         }
         else {
             clearScreen();
@@ -246,11 +259,7 @@ public class SlangWords {
             System.out.println("Slang words found: ");
             for (String i : slang_means) {
                 System.out.print("- " + i + ": ");
-                List<String> l = m.get(i);
-                for (String s: l) {
-                    System.out.print(s + ", ");
-                }
-                System.out.println();
+                ShowDefinition(i);
             }
         }
         else {
@@ -382,8 +391,18 @@ public class SlangWords {
         Menu();
     }
 
-    public void Func_8() {
+    public static void Func_8() {
+        clearScreen();
 
+        Object[] Keys = m.keySet().toArray();
+        Object random_key = Keys[new Random().nextInt(Keys.length)];
+        
+        System.out.println("Ramdom Slang word today:");
+        System.out.print("- " + random_key + ": ");
+        ShowDefinition((String)random_key);
+
+        PauseTest();
+        Menu();
     }
 
     public void Func_9() {
