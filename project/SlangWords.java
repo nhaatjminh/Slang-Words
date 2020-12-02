@@ -135,14 +135,20 @@ public class SlangWords {
         return his;
     }
 
-    public static void AddNewSlangToFile(String file_name, String slang, String means) {
+    public static void WriteFile(String file_name) {
         try(FileWriter fw = new FileWriter(file_name, true);
             BufferedWriter bw = new BufferedWriter(fw)) {
-            PrintWriter out = new PrintWriter(bw);
-           
-            out.println(slang + "`" + means);
+          
+            for (String key : m.keySet()) {
+                bw.write(key + "`");
+                List<String> tmp = m.get(key);
+                int i = 0;
+                for (i = 0; i < tmp.size() - 1; i++) {
+                    bw.write(tmp.get(i) + "| ");
+                }
+                bw.write(tmp.get(i) + "\n");
+            }
 
-            out.close();
             fw.close();
             bw.close();
         }
@@ -181,9 +187,13 @@ public class SlangWords {
         else if (choice == 4) {
             Func_4();
         }
+        else if (choice == 5) {
+            Func_5();
+        }
         else {
             clearScreen();
             WriteHistory("history.txt");
+            WriteFile("newslang.txt");
             System.exit(0);
         }
     }
@@ -257,20 +267,18 @@ public class SlangWords {
         Menu();
     }
 
-    public static void AddSlang(String file_name, String slang, String means) {
+    public static void AddSlang(String slang, String means) {
             ArrayList<String> tmp = new ArrayList<String>();
             tmp.add(means);
             m.put(slang.toUpperCase(), tmp);
-            AddNewSlangToFile(file_name, slang, means);
             System.out.println("Add successfully!!!");
     }
 
-    public static void Duplicate(String file_name, String slang, String means) {
+    public static void Duplicate(String slang, String means) {
         List<String> tmp = new ArrayList<String>();
         tmp = m.get(slang);
         tmp.add(means);
         m.put(slang.toUpperCase(), tmp);
-        AddNewSlangToFile(file_name, slang, means);
         System.out.println("Add successfully!!!");
 }
 
@@ -289,21 +297,41 @@ public class SlangWords {
             System.out.println("2. Dupicate");
             int c = sc.nextInt();
             if (c == 1) {
-                AddSlang("overwrite.txt", slang, means);
+                AddSlang(slang, means);
             }
             else if (c == 2) {
-                Duplicate("new_slang.txt", slang, means);
+                Duplicate(slang, means);
             }
         }
         else {
-
+            AddSlang(slang, means);
         }
         PauseTest();
         Menu();
     }
 
-    public void Func_5() {
+    public static void Func_5() {
+        clearScreen();
 
+        System.out.print("Enter Slang word you want to edit: ");
+        String slang = sc.nextLine();
+        if (!m.containsKey(slang)) {
+            System.out.println("This Slang word does not exist!!");
+        }
+        else {
+            System.out.print("Enter new Slang word: ");
+            String new_slang = sc.nextLine();
+            System.out.print("Enter new Meaning: ");
+            String new_means = sc.nextLine();
+            List<String> tmp = new ArrayList<String>();
+            tmp.add(new_means);
+            m.put(new_slang, tmp);
+            m.remove(slang);
+            System.out.println("Edit successfully!!");
+        }
+
+        PauseTest();
+        Menu();
     }
 
     public void Func_6() {
@@ -327,9 +355,12 @@ public class SlangWords {
     }
 
     public static void main(String[] args) {
-        ReadFile("slang.txt");
-        ReadFileDuplicate("new_slang.txt");
-        ReadFile("overwrite");
+        
+        ReadFile("newslang.txt");
+        if (m.isEmpty()) {
+            ReadFile("slang.txt");
+        }
+        
         his = LoadHistory("history.txt");
         Menu();
     }
