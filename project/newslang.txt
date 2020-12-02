@@ -7560,4 +7560,81 @@ MATE`Friend
 VLOG`Video Log
 GR&D`Grinning, Running & Ducking
 CUZZ`Friend| cousin
-NATTY`Natural Li
+NATTY`Natural Light beer| Smart, good, cool
+AOTS`Attack of the Show (TV show)
+AZN`Asian
+YDWK`YDWTK
+WORM`Malicious computer program
+HCIT`How Cool Is That?
+TFLN`Texts From Last Night
+DYAC`Damn You Auto Correct
+SWAMBO`She Who Always Must Be Obeyed
+HEADS UP`Advance notice
+LOVL`Laughing Out Very Loud
+WOTD`Word Of The Day
+LOTR`Lord of the Rings
+DELISH`Delicious
+SIWOTI`Someone Is Wrong On The Internet
+LOUD`Good quality marijuana
+NAMASTE`Sanskrit greeting
+WOTS`Word On The Street
+TWOP`Television Without Pity
+WIFEY`Serious girlfriend| wife material
+CAUSE`Because
+HTML`Hypertext Markup Language
+MAYN`Man
+BOTCH`Mess up
+GAMMD`Go Ahead Make My Day
+TWOT`Total Waste Of Time
+10CHAR`Padding where at least 10 characters are required
+SOOTB`Straight Out Of The Box
+STMF`Stay Thirsty My Friends
+OHAC`Own House And Car
+SYTYCD`So You Think You Can Dance
+VLSI`Very Large-Scale Integration
+H2IK`Hell If I Know
+&HEARTS;`HTML code for a heart
+BOTDF`Blood On The Dance Floor (band)
+TWOC`Taken Without Owner's Consent
+LOWE`Don't bother| forget it
+SAB`Smoking A Blunt
+SAE`Stamped/Self Addressed Envelope
+SAD`Pathetic| Seasonal Adjustment Disorder
+SAG`Wear trousers low around the waist
+SAF`Single Asian Female
+XAXA`Ha Ha
+SAM`Stop Annoying Me
+SAN`Japanese name suffix, Mr or Ms
+SAP`Sad And Pathetic| Fool
+SAS`Special Air Service
+LOYOL`Live Out Your Own Life
+SAT`Scholastic Assessment Test
+STNY`Same Time Next Year
+SBD`Silent But Deadly
+SBF`Single Black Female
+BROSKI`Bro
+SBJ`Sweet Baby Jesus
+AOYP`Angel on Your Pillow
+SBI`Surrounded By Incompetence
+DYEL`Do You Even Lift?
+SBM`Single Black Male
+0_0`Shocked
+BAC`Back At Computer| Blood Alcohol Content| By Any Chance
+SBT`Sorry 'Bout That
+BAD`Good
+OHAI`Oh, Hi
+SBS`Step By Step
+BAE`Baby
+STML`Short Term Memory Loss
+BAG`Get
+BAH`Bored As Hell
+BAI`Bye
+BAK`Back At Keyboard
+BAM`Below Average Mentality| Exclamation of happiness
+DHCP`Dynamic Host Configuration Protocol
+BAO`Be Aware Of
+SCA`Scandal
+BAU`Business As Usual
+SCH`School
+BAY`Baby
+SCO`San Fransisco

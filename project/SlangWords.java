@@ -209,6 +209,12 @@ public class SlangWords {
         else if (choice == 8) {
             Func_8();
         }
+        else if (choice == 9) {
+            Func_9();
+        }
+        else if (choice == 10) {
+            Func_10();
+        }
         else {
             clearScreen();
             WriteHistory("history.txt");
@@ -391,26 +397,58 @@ public class SlangWords {
         Menu();
     }
 
+    public static String RandomKey() {
+        Object[] Keys = m.keySet().toArray();
+        return (String)Keys[new Random().nextInt(Keys.length)];
+    }
+
     public static void Func_8() {
         clearScreen();
-
-        Object[] Keys = m.keySet().toArray();
-        Object random_key = Keys[new Random().nextInt(Keys.length)];
+        String random_key = RandomKey();
         
         System.out.println("Ramdom Slang word today:");
         System.out.print("- " + random_key + ": ");
-        ShowDefinition((String)random_key);
+        ShowDefinition(random_key);
 
         PauseTest();
         Menu();
     }
 
-    public void Func_9() {
+    public static void Func_9() {
+        clearScreen();
 
+        Random r = new Random();
+        List<String> choice = new ArrayList<String>();
+        for(int i = 0; i < 4; i++) {
+            String word = RandomKey();
+            choice.add(word);
+        }
+
+        String ans_key = choice.get(r.nextInt(choice.size()));
+
+        System.out.println(">> Slang word: " + ans_key);
+        System.out.println(">> What is the definition of the above Slang word? Choose your answer (1-4)");
+        int index = 1;
+        for (String i : choice) {
+            System.out.print(index + ". ");
+            ShowDefinition(i);
+            index++;
+        }
+        System.out.print(">>> Your answer: ");
+        int input = sc.nextInt();
+        if (choice.get(input - 1).equals(ans_key)){
+            System.out.println(">>> Congratulation! You won the game!!!");
+        }
+        else {
+            System.out.println(">>> You losed the game!!!");
+        }
+
+        PauseTest();
+        Menu();
     }
 
-    public void Func_10() {
-
+    public static void Func_10() {
+        
     }
 
     public static void main(String[] args) {
