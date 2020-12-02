@@ -367,7 +367,19 @@ public class SlangWords {
     }
 
     public static void Func_7() {
-        
+        clearScreen();
+
+        m.clear();;
+        if (m.isEmpty()) {
+            ReadFile("slang.txt");
+            System.out.println("Reset successfully!!");
+        }
+        else {
+            System.out.println("Reset Fail!!");
+        }
+
+        PauseTest();
+        Menu();
     }
 
     public void Func_8() {
