@@ -136,7 +136,7 @@ public class SlangWords {
     }
 
     public static void WriteFile(String file_name) {
-        try(FileWriter fw = new FileWriter(file_name, true);
+        try(FileWriter fw = new FileWriter(file_name);
             BufferedWriter bw = new BufferedWriter(fw)) {
           
             for (String key : m.keySet()) {
@@ -189,6 +189,12 @@ public class SlangWords {
         }
         else if (choice == 5) {
             Func_5();
+        }
+        else if (choice == 6) {
+            Func_6();
+        }
+        else if (choice == 7) {
+            Func_7();
         }
         else {
             clearScreen();
@@ -280,7 +286,7 @@ public class SlangWords {
         tmp.add(means);
         m.put(slang.toUpperCase(), tmp);
         System.out.println("Add successfully!!!");
-}
+    }
 
     public static void Func_4() {
         clearScreen();
@@ -292,7 +298,7 @@ public class SlangWords {
         String means = sc.nextLine();
         //String ignore = sc.nextLine();
         if (m.containsKey(slang)) {
-            System.out.println("This Slang word was exited, Choose what you want to: ");
+            System.out.println("This Slang word was existed, Choose what you want to: ");
             System.out.println("1. Overwrite");
             System.out.println("2. Dupicate");
             int c = sc.nextInt();
@@ -315,6 +321,7 @@ public class SlangWords {
 
         System.out.print("Enter Slang word you want to edit: ");
         String slang = sc.nextLine();
+        slang = slang.toUpperCase();
         if (!m.containsKey(slang)) {
             System.out.println("This Slang word does not exist!!");
         }
@@ -325,7 +332,7 @@ public class SlangWords {
             String new_means = sc.nextLine();
             List<String> tmp = new ArrayList<String>();
             tmp.add(new_means);
-            m.put(new_slang, tmp);
+            m.put(new_slang.toUpperCase(), tmp);
             m.remove(slang);
             System.out.println("Edit successfully!!");
         }
@@ -334,12 +341,33 @@ public class SlangWords {
         Menu();
     }
 
-    public void Func_6() {
+    public static void Func_6() {
+        clearScreen();
 
+        System.out.print("Enter Slang word you want to delete: ");
+        String slang = sc.nextLine();
+        slang = slang.toUpperCase();
+        if (!m.containsKey(slang)) {
+            System.out.println("This Slang word does not exist!!");
+        }
+        else {
+            System.out.println("Comfirm delete (y/n)? ");
+            String choice = sc.next();
+            if (choice.equals("y") || choice.equals("Y")) {
+                m.remove(slang);
+                System.out.println("Delete successfully!!");
+            }
+            else {
+                System.out.println("Not delete!!");
+            }
+        }
+
+        PauseTest();
+        Menu();
     }
 
-    public void Func_7() {
-
+    public static void Func_7() {
+        
     }
 
     public void Func_8() {
