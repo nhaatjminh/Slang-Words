@@ -448,7 +448,36 @@ public class SlangWords {
     }
 
     public static void Func_10() {
-        
+        clearScreen();
+
+        Random r = new Random();
+        List<String> choice = new ArrayList<String>();
+        for(int i = 0; i < 4; i++) {
+            String word = RandomKey();
+            choice.add(word);
+        }
+
+        String ans_key = choice.get(r.nextInt(choice.size()));
+
+        System.out.println(">> Definition:");
+        ShowDefinition(ans_key);
+        System.out.println(">> What is the Slang word of the above definition? Choose your answer (1-4)");
+        int index = 1;
+        for (String i : choice) {
+            System.out.println(index + ". " + i);
+            index++;
+        }
+        System.out.print(">>> Your answer: ");
+        int input = sc.nextInt();
+        if (choice.get(input - 1).equals(ans_key)){
+            System.out.println(">>> Congratulation! You won the game!!!");
+        }
+        else {
+            System.out.println(">>> You losed the game!!!");
+        }
+
+        PauseTest();
+        Menu();
     }
 
     public static void main(String[] args) {
